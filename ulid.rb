@@ -2,6 +2,7 @@ class Ulid < Formula
   desc "ULID (Universally Unique Lexicographically Sortable Identifier) generator"
   homepage "https://github.com/cloudresty/goulid"
   url "https://github.com/cloudresty/goulid/archive/${GITHUB_REF_NAME}.tar.gz"
+  version "${GITHUB_REF_NAME}"
   sha256 "YOUR_SHA256_CHECKSUM"
 
   depends_on "go" => :build
