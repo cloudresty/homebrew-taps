@@ -15,7 +15,7 @@ A Homebrew Tap is a third-party repository of Homebrew formulae, casks, and/or e
 To use any of the Homebrew Taps provided by Cloudresty, simply run the following command:
 
 ```bash
-brew tap cloudresty/taps
+brew tap cloudresty/homebrew-taps
 ```
 
 Once tapped, you can install any of the available formulae or casks using the standard brew install command.
