@@ -17,6 +17,9 @@ jobs:
       - name: Set up Homebrew
         uses: Homebrew/actions/setup-homebrew@master
 
+      - name: Set Write Permissions
+        run: chmod +w ulid.rb
+
       - name: Bump formula
         run: brew bump-formula-pr --version ${{ github.event.client_payload.ref }} ulid
         env:
