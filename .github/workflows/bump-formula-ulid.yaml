@@ -1,9 +1,11 @@
-name: Bump Formula
+name: Bump Formula - ULID
 
 on:
   push:
     tags:
-      - 'v*'
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+    paths:
+      - 'ulid.rb'
 
 jobs:
   bump:
