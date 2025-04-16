@@ -6,7 +6,7 @@ on:
 
 jobs:
   bump:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -17,12 +17,19 @@ jobs:
       - name: Set up Homebrew
         uses: Homebrew/actions/setup-homebrew@master
 
-      - name: Bump formula
+      - name: Bump formula (output)
+        id: bump
+        run: brew bump-formula-pr --version ${{ github.event.client_payload.ref }} ulid
+
+      - name: Show ulid.rb
+        run: cat ulid.rb
+
+      - name: Manual inreplace
         run: |
-          sleep 2
-          brew bump-formula-pr --version ${{ github.event.client_payload.ref }} ulid
+          NEW_SHA256=$(grep 'sha256 "' ulid.rb | awk '{print $2}' | tr -d '"')
+          echo "New SHA256: $NEW_SHA256"
+          sed -i.bak "s/YOUR_SHA256_CHECKSUM/$NEW_SHA256/" ulid.rb
+          cat ulid.rb
+
         env:
           HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.HOMEBREW_TAP_TOKEN }}
-
-      - name: Debug Output
-        run: echo "${{ steps.bump.outputs.output }}"
