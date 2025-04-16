@@ -18,10 +18,9 @@ jobs:
         uses: Homebrew/actions/setup-homebrew@master
 
       - name: Bump formula
-        id: bump
         run: |
+          sleep 2
           brew bump-formula-pr --version ${{ github.event.client_payload.ref }} ulid
-          echo "::set-output name=output::$(brew bump-formula-pr --version ${{ github.event.client_payload.ref }} ulid)"
         env:
           HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.HOMEBREW_TAP_TOKEN }}
 
